@@ -9,9 +9,9 @@ import { ThemeProvider } from "@/context/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Startup Landing | Aceternity Template",
+  title: "Massive Minds",
   description:
-    "Startup landing is a simple one page landing page for startups and agencies. Built with Next.js, Tailwind CSS, TypeScript and framer motion.",
+    "Massive Minds is an AI marketing commpany",
 };
 
 export default function RootLayout({
