@@ -4,6 +4,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Script from "next/script";
 
+// Add TypeScript declarations for Typeform
+declare global {
+    interface Window {
+      tf: {
+        load: () => void;
+      };
+    }
+  }
+
 export default function Outreach() {
   const [isLoading, setIsLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
