@@ -23,10 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <script
-          type="text/javascript"
+        <Script
           src="https://app.termly.io/resource-blocker/aa6f4781-f579-41d1-bc64-41efa349ecf0?autoBlock=on"
-      ></script>
+          strategy="afterInteractive"
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-5KK8NV7QMS"
           strategy="afterInteractive"
