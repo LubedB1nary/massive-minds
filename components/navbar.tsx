@@ -25,13 +25,14 @@ interface NavbarProps {
 
 export const Navbar = () => {
   const navItems = [
+    
     {
-      name: "Features",
-      link: "/#features",
+      name: "",
+      link: "#",
     },
     {
-      name: "Contact",
-      link: "/#contact",
+      name: "",
+      link: "#",
     },
   ];
 
@@ -118,7 +119,7 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
         ))}
       </motion.div>
       <div className="flex items-center gap-4">
-        <ModeToggle />
+        {/* <ModeToggle /> */}
 
         <AnimatePresence mode="popLayout" initial={false}>
           {!visible && (
@@ -155,7 +156,7 @@ const DesktopNav = ({ navItems, visible }: NavbarProps) => {
         </AnimatePresence>
         <Button
           as="a"
-          href="#" // Add an actual link here when ready
+          href="https://calendly.com/patrick-massiveminds/30min" // Add an actual link here when ready
           variant="primary"
           className="hidden md:block"
         >

@@ -11,9 +11,9 @@ export default function Home() {
   return (
     <main className="">
       <Hero />
-      <Features />
+      {/* <Features /> */}
       {/* <Pricing /> */}
-      <CTA />
+      {/* <CTA /> */}
     </main>
   );
 }

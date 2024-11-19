@@ -1,31 +1,37 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import Balancer from "react-wrap-balancer";
-import Link from "next/link";
-import { Button } from "./button";
-import { useCalEmbed } from "@/app/hooks/useCalEmbed";
-import { CONSTANTS } from "@/constants/links";
+import Script from "next/script";
 
-export function Hero() {
+export default function Outreach() {
+  const [isLoading, setIsLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
-  const calOptions = useCalEmbed({
-    namespace: CONSTANTS.CALCOM_NAMESPACE,
-    styles: {
-      branding: {
-        brandColor: CONSTANTS.CALCOM_BRAND_COLOR,
-      },
-    },
-    hideEventTypeDetails: CONSTANTS.CALCOM_HIDE_EVENT_TYPE_DETAILS,
-    layout: CONSTANTS.CALCOM_LAYOUT,
-  });
+
+  useEffect(() => {
+    const loadTypeform = () => {
+      if (window.tf) {
+        window.tf.load();
+        setIsLoading(false);
+      }
+    };
+
+    if (window.tf) {
+      loadTypeform();
+    }
+
+    window.addEventListener('DOMContentLoaded', loadTypeform);
+
+    return () => {
+      window.removeEventListener('DOMContentLoaded', loadTypeform);
+    };
+  }, []);
+
   return (
     <div
       ref={parentRef}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-10 md:px-8 md:py-10 bg-neutral-50 dark:bg-neutral-900"
+      className="relative flex min-h-fit flex-col items-center justify-start overflow-hidden px-4 py-10 md:px-8 bg-neutral-50 dark:bg-neutral-900"
     >
       <BackgroundGrids />
       <CollisionMechanism
@@ -69,89 +75,39 @@ export function Hero() {
         }}
       />
 
-      <div className="text-balance relative z-20 mx-auto mb-4 mt-4 max-w-4xl text-center text-3xl font-semibold tracking-tight text-gray-700 dark:text-neutral-300 md:text-7xl">
-        <Balancer>
-          <motion.h2>
-            {"AI-Powered Marketing Insights"
-              .split(" ")
-              .map((word, index) => (
-                <motion.span
-                  initial={{
-                    filter: "blur(10px)",
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  animate={{
-                    filter: "blur(0px)",
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.05,
-                  }}
-                  className="inline-block"
-                  key={index}
-                >
-                  {word}&nbsp;
-                </motion.span>
-              ))}
-          </motion.h2>
-        </Balancer>
+      <div className="text-center mt-20 mb-8 z-20">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800 dark:text-gray-100">
+          Join Our Research Project
+        </h1>
+        <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
+          Help shape the future of AI-driven marketing insights by participating in our groundbreaking 2025 pilot study.
+        </p>
       </div>
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0.5 }}
-        className="relative z-20 mx-auto mt-4 max-w-2xl px-4 text-center text-base/6 text-gray-600 dark:text-gray-200 text-xl"
-      >
-        Welcome to MassiveMinds. After 35 years trying to understand how people think and what they're going to do or buy, I think I've found a better way. If you'd like to join us in a pilot research project in 2025 (or sooner), let me know here. Thanks! <br></br> <br></br> Patrick Palmer<br></br>Founder & CEO, MassiveMinds, Inc.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0.7 }}
-        className="mb-10 mt-8 flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row md:mb-20"
-      >
-        <Button
-          as={Link}
-          href="/outreach"
-          variant="dark"
-          className="hidden md:block w-40 text-center"
-        >
-          Send an Inquiry
-        </Button>
 
-        <Button
-          as="a"
-          href="https://calendly.com/patrick-massiveminds/30min" // Add an actual link here when ready
-          variant="primary"
-          className="hidden md:block"
-        >
-          Book a call
-        </Button>
-      </motion.div>
-
-              {/* 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.9, ease: "easeOut" }}
-        ref={containerRef}
-        className="relative mx-auto max-w-7xl rounded-[32px] border border-neutral-200/50 bg-neutral-100 p-2 backdrop-blur-lg dark:border-neutral-700 dark:bg-neutral-800/50 md:p-4"
-      >
-        <div className="rounded-[24px] border border-neutral-200 bg-white p-2 dark:border-neutral-700 dark:bg-black">
-          <Image
-            src="/massive_minds_dashboard.png"
-            alt="header"
-            width={1920}
-            height={1080}
-            className="rounded-[20px]"
-          />
-        </div>
-      </motion.div>
-      */}
-
+      <Script
+        id="typeform-script"
+        src="//embed.typeform.com/next/embed.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          if (window.tf) {
+            window.tf.load();
+            setIsLoading(false);
+          }
+        }}
+      />
+      
+      <div className="relative z-20 w-full max-w-[80rem] h-[800px] bg-background/80 rounded-lg shadow-lg backdrop-blur-sm mb-8">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-background/80 rounded-lg">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"/>
+          </div>
+        )}
+        
+        <div 
+          data-tf-live="01JD3860873CYDMBB5DSB2CK6M"
+          className="w-full h-full rounded-lg"
+        />
+      </div>
     </div>
   );
 }
@@ -250,13 +206,11 @@ const CollisionMechanism = React.forwardRef<
       setTimeout(() => {
         setCollision({ detected: false, coordinates: null });
         setCycleCollisionDetected(false);
-        // Set beam opacity to 0
         if (beamRef.current) {
           beamRef.current.style.opacity = "1";
         }
       }, 2000);
 
-      // Reset the beam animation after a delay
       setTimeout(() => {
         setBeamKey((prevKey) => prevKey + 1);
       }, 2000);
@@ -364,7 +318,7 @@ const GridLineVertical = ({
           "--height": "5px",
           "--width": "1px",
           "--fade-stop": "90%",
-          "--offset": offset || "150px", //-100px if you want to keep the line inside
+          "--offset": offset || "150px",
           "--color-dark": "rgba(255, 255, 255, 0.3)",
           maskComposite: "exclude",
         } as React.CSSProperties
