@@ -9,9 +9,32 @@ import { Button } from "./button";
 import { useCalEmbed } from "@/app/hooks/useCalEmbed";
 import { CONSTANTS } from "@/constants/links";
 
+// First, let's create a hook to detect screen size
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 640); // 640px is the default Tailwind 'sm' breakpoint
+    };
+
+    // Check initially
+    checkIsMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIsMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  return isMobile;
+};
+
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const calOptions = useCalEmbed({
     namespace: CONSTANTS.CALCOM_NAMESPACE,
     styles: {
@@ -114,13 +137,13 @@ export function Hero() {
         className="mb-10 mt-8 flex w-full flex-col items-center justify-center gap-4 px-8 sm:flex-row md:mb-20"
       >
         <Button
-          as={Link}
-          href="/outreach"
-          variant="dark"
-          className="w-40 text-center"
-        >
-          Send an Inquiry
-        </Button>
+        as="a"
+        href={isMobile ? "https://massiveminds.typeform.com/intake" : "/outreach"}
+        variant="dark"
+        className="w-40 text-center"
+      >
+        Send an Inquiry
+      </Button>
 
         <Button
           as="a"
