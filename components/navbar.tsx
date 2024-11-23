@@ -253,7 +253,7 @@ const MobileNav = ({ navItems, visible }: NavbarProps) => {
               */}
               <Button
                 as="a"
-                href="#" // Add an actual link here when ready
+                href="https://calendly.com/patrick-massiveminds/30min" // Add an actual link here when ready
                 onClick={() => setOpen(false)}
                 variant="primary"
                 className="block md:hidden w-full"
