@@ -117,7 +117,7 @@ export function Hero() {
           as={Link}
           href="/outreach"
           variant="dark"
-          className="hidden md:block w-40 text-center"
+          className="w-40 text-center"
         >
           Send an Inquiry
         </Button>
@@ -126,7 +126,7 @@ export function Hero() {
           as="a"
           href="https://calendly.com/patrick-massiveminds/30min" // Add an actual link here when ready
           variant="primary"
-          className="hidden md:block"
+          className=""
         >
           Book a call
         </Button>
