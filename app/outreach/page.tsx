@@ -86,10 +86,10 @@ export default function Outreach() {
 
       <div className="text-center mt-20 mb-8 z-20">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-800 dark:text-gray-100">
-          Join Our Research Project
+          Start a Pilot Project
         </h1>
         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
-          Help shape the future of AI-driven marketing insights by participating in our groundbreaking 2025 pilot study.
+          Help shape the future of AI-driven marketing insights with a groundbreaking 2025 pilot study.
         </p>
       </div>
 
