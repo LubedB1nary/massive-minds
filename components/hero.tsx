@@ -128,7 +128,7 @@ export function Hero() {
         transition={{ duration: 0.2, delay: 0.5 }}
         className="relative z-20 mx-auto mt-4 max-w-2xl px-4 text-center text-base/6 text-gray-600 dark:text-gray-200 text-xl"
       >
-        Welcome to MassiveMinds. After 35 years trying to understand how people think and what they&apos;re going to do or buy, I think I&apos;ve found a better way. If you&apos;d like to join us in a pilot research project in 2025 (or sooner), let me know here. Thanks! <br></br> <br></br> Patrick Palmer<br></br>Founder & CEO, MassiveMinds, Inc.
+        Welcome to MassiveMinds. After 35 years trying to understand how people think and what they&apos;re going to do or buy, I think I&apos;ve found a better way. <br></br>If you&apos;d like to learn more, send an inquiry or book a call below<br></br> <br></br> Patrick Palmer<br></br>Founder & CEO, MassiveMinds
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 10 }}
